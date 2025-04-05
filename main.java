@@ -13,20 +13,21 @@ public class main {
         LinkedList<Day> days = new LinkedList<>();
 
         // holiday presets
-        Day[] germanyBadenWürtemberg = new Day[12];
-        germanyBadenWürtemberg[0] = new Day(false, 1, 1, currentYear);
-        germanyBadenWürtemberg[1] = new Day(false, 6, 1, currentYear);
-        germanyBadenWürtemberg[2] = new Day(false, 18, 4, currentYear);
-        germanyBadenWürtemberg[3] = new Day(false, 21, 4, currentYear);
-        germanyBadenWürtemberg[4] = new Day(false, 1, 5, currentYear);
-        germanyBadenWürtemberg[5] = new Day(false, 29, 5, currentYear);
-        germanyBadenWürtemberg[6] = new Day(false, 9, 6, currentYear);
-        germanyBadenWürtemberg[7] = new Day(false, 19, 6, currentYear);
-        germanyBadenWürtemberg[8] = new Day(false, 3, 11, currentYear);
-        germanyBadenWürtemberg[9] = new Day(false, 1, 12, currentYear);
-        germanyBadenWürtemberg[10] = new Day(false, 25, 12, currentYear);
-        germanyBadenWürtemberg[11] = new Day(false, 26, 12, currentYear);
-        int[] germanyBadenWürtembergDayOfYearValues = Day.generateDayOfYearValues(germanyBadenWürtemberg);
+        ArrayList<Day> germanyBadenWuerttemberg = new ArrayList<>();
+        germanyBadenWuerttemberg.add(new Day(false, 6, 1, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 18, 4, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 21, 4, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 1, 5, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 29, 5, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 9, 6, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 19, 6, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 3, 11, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 1, 12, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 25, 12, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 26, 12, currentYear));
+
+        germanyBadenWuerttemberg.add(new Day(false, 26, 12, currentYear));
+        ArrayList<Integer> germanyBadenWürtembergDayOfYearValues = Day.generateDayOfYearValues(germanyBadenWuerttemberg);
         // user input
         /*
          * Scanner scanner = new Scanner(System.in);
@@ -56,7 +57,10 @@ public class main {
             } else if (currentDay == 30) { //check for months with 30 days
                 currentMonth++;
                 currentDay = 1;
-            } else if (isLeapYear && currentDay == 28 && currentMonth==2) { //check for februare
+            } else if (!isLeapYear && currentDay == 28 && currentMonth == 2) { //check for februare
+                currentMonth++;
+                currentDay=1;
+            } else if (isLeapYear && currentDay == 29 && currentMonth == 2 ) {
                 currentMonth++;
                 currentDay=1;
             } else {
@@ -66,8 +70,8 @@ public class main {
             if (i % 7 == 5 || i % 7 == 6) { // check for saturday or sunday
                 day = new Day(false, currentDay, currentMonth, currentYear);
             }
-            else if (germanyBadenWürtembergDayOfYearValues) {
-                
+            else if (germanyBadenWürtembergDayOfYearValues.contains(i)) {
+                day = new Day(false,currentDay, currentMonth, currentYear);
             }
             else {
                 day = new Day(true, currentDay, currentMonth, currentYear);

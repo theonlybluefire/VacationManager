@@ -1,5 +1,7 @@
 import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Day {
@@ -25,11 +27,13 @@ public class Day {
         this.booked = booked;
     }
 
-    static public int[] generateDayOfYearValues(Day[] dayArray) {
-        int[] dayOfYearArray = new int[dayArray.length];
-        for(int i = 0;i>dayArray.length;i++) {
-            dayOfYearArray[i] = dayArray[i].dayOfYear;
+    static public ArrayList<Integer> generateDayOfYearValues(ArrayList<Day> dayArray) {
+        ArrayList<Integer> dayOfYearArray = new ArrayList<>();
+
+        for(Day dayOfYear : dayArray) {
+            dayOfYearArray.add(dayOfYear.dayOfYear);
         }
+
         return dayOfYearArray;
     }
 
