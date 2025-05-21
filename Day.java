@@ -19,6 +19,11 @@ public class Day {
         this.workday = workday;
     }
 
+    public void setBooked(boolean booked) {
+        this.booked = booked;
+    }
+
+
     public Day(boolean isWorkday,int day, int month, int year, int START_WEEKDAY) {
         LocalDate date = LocalDate.of(year, month, day);
         this.workday = isWorkday;
@@ -31,10 +36,6 @@ public class Day {
         this.weekdayWritten = getWeekdayWritten(weekday);
     }
 
-    public void setBooked(boolean booked) {
-        this.booked = booked;
-    }
-
     static public ArrayList<Integer> generateDayOfYearValues(ArrayList<Day> dayArray) {
         ArrayList<Integer> dayOfYearArray = new ArrayList<>();
 
@@ -45,10 +46,9 @@ public class Day {
         return dayOfYearArray;
     }
 
+
     static private String getWeekdayWritten(int weekday) {
         switch (weekday) {
-            case 0:
-                return "Sunday";
             case 1:
                 return "Monday";
             case 2:
@@ -61,6 +61,8 @@ public class Day {
                 return "Friday";
             case 6:
                 return "Saturday";
+            case 0:
+                return "Sunday";
             default:
                 return null;
         }

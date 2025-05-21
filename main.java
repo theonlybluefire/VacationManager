@@ -22,17 +22,17 @@ public class main {
         ArrayList<Day> germanyBadenWuerttemberg = new ArrayList<>();
         germanyBadenWuerttemberg.add(new Day(false, 6, 1, currentYear, START_WEEKDAY));
         germanyBadenWuerttemberg.add(new Day(false, 18, 4, currentYear, START_WEEKDAY));
-        germanyBadenWuerttemberg.add(new Day(false, 21, 4, currentYear));
-        germanyBadenWuerttemberg.add(new Day(false, 1, 5, currentYear));
-        germanyBadenWuerttemberg.add(new Day(false, 29, 5, currentYear));
-        germanyBadenWuerttemberg.add(new Day(false, 9, 6, currentYear));
-        germanyBadenWuerttemberg.add(new Day(false, 19, 6, currentYear));
-        germanyBadenWuerttemberg.add(new Day(false, 3, 11, currentYear));
-        germanyBadenWuerttemberg.add(new Day(false, 1, 12, currentYear));
-        germanyBadenWuerttemberg.add(new Day(false, 25, 12, currentYear));
-        germanyBadenWuerttemberg.add(new Day(false, 26, 12, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 21, 4, currentYear, START_WEEKDAY));
+        germanyBadenWuerttemberg.add(new Day(false, 1, 5, currentYear, START_WEEKDAY));
+        germanyBadenWuerttemberg.add(new Day(false, 29, 5, currentYear, START_WEEKDAY));
+        germanyBadenWuerttemberg.add(new Day(false, 9, 6, currentYear, START_WEEKDAY));
+        germanyBadenWuerttemberg.add(new Day(false, 19, 6, currentYear, START_WEEKDAY));
+        germanyBadenWuerttemberg.add(new Day(false, 3, 11, currentYear, START_WEEKDAY));
+        germanyBadenWuerttemberg.add(new Day(false, 1, 12, currentYear, START_WEEKDAY));
+        germanyBadenWuerttemberg.add(new Day(false, 25, 12, currentYear, START_WEEKDAY));
+        germanyBadenWuerttemberg.add(new Day(false, 26, 12, currentYear, START_WEEKDAY));
 
-        germanyBadenWuerttemberg.add(new Day(false, 26, 12, currentYear));
+        germanyBadenWuerttemberg.add(new Day(false, 26, 12, currentYear, START_WEEKDAY));
         ArrayList<Integer> germanyBadenWürtembergDayOfYearValues = Day.generateDayOfYearValues(germanyBadenWuerttemberg);
 
         ArrayList<Integer> MonthsWith31Days = new ArrayList<>();
@@ -77,14 +77,15 @@ public class main {
             } else if (!IS_LEAP_YEAR && currentDay == 28 && currentMonth == 2) { // february and not leap year
                 currentMonth++;
                 currentDay=1;
-            } else if (IS_LEAP_YEAR && currentDay == 29 && currentMonth == 2 ) { // february and leap year
+            } else if (IS_LEAP_YEAR && currentDay == 29 && currentMonth == 2 ) { // february and leap year 
+                //TODO: add leap year input
                 currentMonth++;
                 currentDay=1;
             } else { // normal day
                 currentDay++;
             }
 
-            day = new Day(false, currentDay, currentMonth, currentYear, START_WEEKDAY);
+            day = new Day(true, currentDay, currentMonth, currentYear, START_WEEKDAY);
             if (day.weekday == 7 || day.weekday==6) { // check for saturday or sunday
                 day.setWorkday(false);
             }

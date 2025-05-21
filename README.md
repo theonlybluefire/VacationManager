@@ -10,7 +10,7 @@ A GUI will probably be added in another repo further down the line.
 - [x] (T0) Day class
 - [ ] (T1) Build a LinkedList out of all days in the year with all necessary information to calculate the needed booking days
     - [ ] (T1.1) Implement calender object for a more standardised way of saving the data
-    - [ ] (T1.2) create a Array for all months with 31 days (might be replaced by the calendar object)
+    - [x] (T1.2) create a Array for all months with 31 days (might be replaced by the calendar object)
     - [ ] (T1.3) create method for creating a new month
 - [ ] (T2) Implement calculation
 - [ ] (T3) Allow user input (ex. currentYear etc.)
