@@ -9,7 +9,7 @@ public class main {
         // variables
         int leftoverVacationDays;
         int currentYear = 2025;
-        final boolean IS_LEAP_YEAR = false;
+        boolean IS_LEAP_YEAR = false;
         LinkedList<Day> haveToBookDays = new LinkedList<>();
         LinkedList<Day> days = new LinkedList<>();int currentMonth = 1;
         int currentDay = 0;
