@@ -13,7 +13,6 @@ public class Preset {
     ArrayList<Integer> days;
 
     public Preset(String FileName, int currentYear, int START_WEEKDAY) {
-        System.out.println("starting to decode file ...");
         try {
             this.days = Day.generateDayOfYearValues(decodeFile(FileName, 0, 0));
         } catch (Exception e) {
@@ -37,14 +36,14 @@ public class Preset {
      */
     public ArrayList<Day> decodeFile(String fileName, int currentYear, int START_WEEKDAY)
             throws IOException, FileNotFoundException {
-        ArrayList<Day> days = new ArrayList<>();
+        
+                ArrayList<Day> days = new ArrayList<>();
         Properties props = new Properties();
         String daysString;
         String name;
         String[] daysStringArray;
 
         // read properties file
-
         try (FileInputStream in = new FileInputStream("./presets/" + fileName + ".properties")) {
             props.load(in);
         } catch (FileNotFoundException e) {
@@ -86,7 +85,7 @@ public class Preset {
         Properties properties = new Properties();
 
         if (!validateDaysString(daysString)) {
-            throw new IOException("Invalid day string found !");
+            throw new IOException("Invalid configuration found while creating preset ! String "+daysString+" isn't properly formatted");
         }
 
         properties.setProperty("days", daysString);
@@ -98,16 +97,32 @@ public class Preset {
     private static boolean validateDaysString(String daysString) {
         String[] parts = daysString.split(",");
 
-        try {
-            if (Integer.parseInt(parts[0]) <= 31 && Integer.parseInt(parts[1]) <= 12) {
+        System.out.println("Validating Sting : "+daysString+ parts.length);
+
+        if(parts.length>1) {
+            for(String part : parts) {
+                String[] elements = part.split("/");
+                if(Integer.parseInt(elements[0]) <= 31 && Integer.parseInt(elements[1]) <= 12) {
+                    return true;
+                }
+                else {
+                    System.out.println(1);
+                    return false;
+                }
+            }
+        }
+        else {
+            System.out.println("test");
+            String[] elements = parts[0].split("/");
+            if (Integer.parseInt(elements[0]) <= 31 && Integer.parseInt(elements[1]) <= 12) {
                 return true;
             } else {
-                System.out.println("Invalid day string found !");
+                System.out.println(2);
                 return false;
+                
             }
-        } catch (Exception e) {
-            System.out.println("Invalid day string found !");
-            return false;
         }
+
+        return false;
     }
 }
