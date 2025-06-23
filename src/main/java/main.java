@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import src.main.java.model.Day;
 import src.main.java.model.Preset;
+import src.main.java.utils.StartupUtils;
 
 public class main {
     public static void main(String[] args) {
@@ -23,6 +24,7 @@ public class main {
         if (IS_LEAP_YEAR)
             daysInTheYear = 366;
 
+            StartupUtils.startup();
         try {
             Preset.createNewPreset("test", "12/12,");
         }
