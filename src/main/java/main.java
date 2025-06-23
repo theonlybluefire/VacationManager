@@ -1,8 +1,12 @@
+package src.main.java;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.IntSummaryStatistics;
 import java.util.LinkedList;
 import java.util.Scanner;
+
+import src.main.java.model.Day;
+import src.main.java.model.Preset;
 
 public class main {
     public static void main(String[] args) {
@@ -18,12 +22,9 @@ public class main {
         final int START_WEEKDAY = 2;
         if (IS_LEAP_YEAR)
             daysInTheYear = 366;
-        
-
-        
 
         try {
-            Preset.createNewPreset("test", "12/12");
+            Preset.createNewPreset("test", "12/12,");
         }
         catch (Exception e) {
             e.printStackTrace();

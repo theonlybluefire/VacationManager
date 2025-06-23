@@ -1,49 +1,14 @@
-import java.time.LocalDate;
+package src.main.java.logic;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Day {
-    private boolean workday;
-    private boolean booked;
-    private int month;
-    private int day;
-    private int year;
-    final public int weekday;
-    final public LocalDate date;
-    final public int dayOfYear;
-    final public String weekdayWritten;
+import src.main.java.model.Day;
+import src.main.java.model.Preset;
 
-    public void setWorkday(boolean workday) {
-        this.workday = workday;
-    }
+public abstract class DayModelLogic {
 
-    public void setBooked(boolean booked) {
-        this.booked = booked;
-    }
-
-    public Day(boolean isWorkday, int day, int month, int year, int START_WEEKDAY) {
-        LocalDate date = LocalDate.of(year, month, day);
-        this.workday = isWorkday;
-        this.month = month;
-        this.day = day;
-        this.year = year;
-        this.date = date;
-        this.dayOfYear = date.getDayOfYear();
-        this.weekday = (START_WEEKDAY + this.dayOfYear) % 7;
-        this.weekdayWritten = getWeekdayWritten(weekday);
-    }
-
-    static public ArrayList<Integer> generateDayOfYearValues(ArrayList<Day> dayArray) {
-        ArrayList<Integer> dayOfYearArray = new ArrayList<>();
-
-        for (Day dayOfYear : dayArray) {
-            dayOfYearArray.add(dayOfYear.dayOfYear);
-        }
-
-        return dayOfYearArray;
-    }
-
-    static public LinkedList<Day> generateDayModel(Preset preset,int CURRENT_YEAR, int START_WEEKDAY, int START_DAY_OF_YEAR,boolean IS_LEAP_YEAR) {
+     static public LinkedList<Day> generateDayModel(Preset preset,int CURRENT_YEAR, int START_WEEKDAY, int START_DAY_OF_YEAR,boolean IS_LEAP_YEAR) {
         int leftoverVacationDays;
         LinkedList<Day> haveToBookDays = new LinkedList<>();
         LinkedList<Day> days = new LinkedList<>();
@@ -100,26 +65,4 @@ public class Day {
         }
         return days;
     }
-
-    static private String getWeekdayWritten(int weekday) {
-        switch (weekday) {
-            case 1:
-                return "Monday";
-            case 2:
-                return "Tuesday";
-            case 3:
-                return "Wednesday";
-            case 4:
-                return "Thursday";
-            case 5:
-                return "Friday";
-            case 6:
-                return "Saturday";
-            case 0:
-                return "Sunday";
-            default:
-                return null;
-        }
-    }
-
 }
