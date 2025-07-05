@@ -3,12 +3,18 @@ package src.main.java.logic;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import src.main.java.model.Config;
 import src.main.java.model.Day;
 import src.main.java.model.Preset;
 
 public abstract class DayModelLogic {
 
-     static public LinkedList<Day> generateDayModel(Preset preset,int CURRENT_YEAR, int START_WEEKDAY, int START_DAY_OF_YEAR,boolean IS_LEAP_YEAR) {
+     static public LinkedList<Day> generateDayModel(Preset preset, Config config) {
+        final int CURRENT_YEAR = config.currentYear;
+        final int START_WEEKDAY = config.startWeekday;
+        final int START_DAY_OF_YEAR = config.startDayOfYear;
+        final boolean IS_LEAP_YEAR = config.isLeapYear;
+
         int leftoverVacationDays;
         LinkedList<Day> haveToBookDays = new LinkedList<>();
         LinkedList<Day> days = new LinkedList<>();
@@ -31,11 +37,8 @@ public abstract class DayModelLogic {
 
         for (int i = (START_DAY_OF_YEAR - 1); i < (daysInTheYear-1); i++) {
             Day day = null; //create new day object
-            if(currentDay == 31) {
-                System.out.println("INFO -> month with 31 days"+MonthsWith31Days.contains(currentMonth));
-            }
             if (currentDay == 31 && MonthsWith31Days.contains(currentMonth)) { //31 day month
-                System.out.println("INFO -> new Month, current Mothn "+currentMonth+"current Day of the year "+i+"");
+                //System.out.println("INFO -> new Month, current Mothn "+currentMonth+"current Day of the year "+i+"");
                 currentMonth++;
                 currentDay = 1;
             } else if (currentDay == 30 && !MonthsWith31Days.contains(currentMonth)) { //30 day month

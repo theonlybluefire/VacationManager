@@ -26,13 +26,7 @@ public class main {
         if (IS_LEAP_YEAR)
             daysInTheYear = 366;
 
-            StartupUtils.startup();
-        try {
-            Preset.createNewPreset("test", "12/12,");
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        StartupUtils.startup();
         
 
         // user input
