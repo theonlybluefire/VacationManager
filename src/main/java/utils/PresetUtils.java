@@ -8,29 +8,30 @@ import java.util.Properties;
 
 public abstract class PresetUtils {
     public static String[] getAvailableTemplates() {
-        File folder = new File("./presets");
+        File folder = new File("../presets");
 
         String[] files = folder.list();
         return files;
     }
 
     public static void createNewPreset(String presetName, String daysString) throws IOException {
+        String path = "./src/main/java/presets" + presetName + ".properties";
+        String folder = "./src/main/java/presets";
         Properties properties = new Properties();
 
         if (!validateDaysString(daysString)) {
             throw new IOException("Invalid configuration found while creating preset ! String "+daysString+" isn't properly formatted");
         }
-
         properties.setProperty("days", daysString);
 
-        OutputStream output = new FileOutputStream("./presets/" + presetName + ".properties");
+        OutputStream output = new FileOutputStream(path);
         properties.store(output, "");
     }
 
     public static boolean validateDaysString(String daysString) {
         String[] parts = daysString.split(",");
 
-        System.out.println("Validating Sting : "+daysString+ parts.length);
+        //System.out.println("Validating Sting : "+daysString+ parts.length);
 
         if(parts.length>1) {
             for(String part : parts) {

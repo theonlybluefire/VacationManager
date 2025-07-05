@@ -35,15 +35,19 @@ public class StartupUtils {
                 "Please enter the number of your choice: ");
         Scanner scanner = new Scanner(System.in);
         char choice = scanner.next().charAt(0);
+        scanner.nextLine();
 
         try {
             switch (choice) {
                 case 'n':
                 System.out.print("Name of the new holiday preset: ");
                     String name = scanner.nextLine();
+
                     System.out.print("Enter your local holidays (Format: dd/mm, dd/mm, ...): ");
                     String dayString = scanner.nextLine();
+
                     PresetUtils.createNewPreset(name, dayString);
+
                     System.out.println("Preset created successfully. Press any key to continue...");
                     scanner.nextLine();
                     mainMenu();

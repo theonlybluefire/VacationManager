@@ -20,6 +20,8 @@ public class main {
         int currentDay = 0;
         int startDayOfYear = 0;
         int daysInTheYear = 365;
+
+        
         final int START_WEEKDAY = 2;
         if (IS_LEAP_YEAR)
             daysInTheYear = 366;
