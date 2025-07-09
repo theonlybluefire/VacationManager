@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import src.main.java.model.Day;
+import src.main.java.model.Preset;
 
 public abstract class PresetUtils {
     /**
      * @return String[] of all preset files inside the preset folder
      */
     public static String[] getAvailablePresets() {
-        File folder = new File("../presets");
+        File folder = new File(Preset.path);
 
         String[] files = folder.list();
         return files;
@@ -28,7 +29,7 @@ public abstract class PresetUtils {
      * @throws IOException
      */
     public static void createNewPreset(String presetName, String daysString) throws IOException {
-        String path = "./src/main/java/presets/" + presetName + ".properties";
+        String path = Preset.path + presetName + ".properties";
 
         Properties properties = new Properties();
 
@@ -45,6 +46,7 @@ public abstract class PresetUtils {
 
     /**
      * Will validate a "daysString" (String in the "days" section of a preset)
+     * 
      * @param daysString String to validated
      * @return will return false if not valid and true if valid
      */
@@ -95,7 +97,8 @@ public abstract class PresetUtils {
         String[] daysStringArray;
 
         // read properties file
-        try (FileInputStream in = new FileInputStream("./presets/" + fileName + ".properties")) {
+        System.out.println("test" + Preset.path + fileName);
+        try (FileInputStream in = new FileInputStream(Preset.path + fileName )) {
             props.load(in);
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("Preset file " + fileName + " not found");

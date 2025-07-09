@@ -1,7 +1,5 @@
 package src.main.java.utils;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
 import src.main.java.logic.DayModelLogic;
@@ -9,6 +7,9 @@ import src.main.java.model.Config;
 import src.main.java.model.Preset;
 
 public class StartupUtils {
+    public Preset preset;
+    public Config config;
+
     public static void startup() {
         System.out.println("\r\n" + //
                 "\r\n" + //
@@ -32,9 +33,7 @@ public class StartupUtils {
     public static void mainMenu() {
         System.out.println("What do you want to do ?\r\n" + //
                 "(n) Create a new preset\r\n" + //
-                "(s) Show/Select available presets\r\n" + //
                 "(p) Plan a new booking\r\n" + //
-                "(r) Configure\r\n" + //
                 "(e) Exit\r\n" + //
                 "Please enter the number of your choice: ");
         Scanner scanner = new Scanner(System.in);
@@ -62,7 +61,7 @@ public class StartupUtils {
                 case 'p': // new booking
                     String[] presets = PresetUtils.getAvailablePresets();
                     int i = 0;
-                    Config config;
+                    Config config = new Config();
 
                     System.out.println(
                             "Following presets are avaible to choose. Please type the according number to select a preset");
@@ -73,28 +72,10 @@ public class StartupUtils {
                     }
                     int presetNumber = scanner.nextInt();
 
-                    try {
-                        config = new Config();
-                    }
-                    catch(FileNotFoundException e) {
-                        System.out.println(e.getMessage());
-                        mainMenu();
-                        scanner.close();
-                        return;
-                    }
-                    catch(IOException e) {
-                        e.printStackTrace();
-                        mainMenu();
-                        scanner.close();
-                        return;
-                    }
-                    
                     Preset preset = new Preset(presets[presetNumber], config.currentYear, config.startWeekday);
 
                     DayModelLogic.generateDayModel(preset, config);
 
-                    break;
-                case 'r':
                     break;
                 case 'e':
                     break;

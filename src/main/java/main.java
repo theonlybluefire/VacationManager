@@ -43,9 +43,7 @@ public class main {
         // create linkedList for every day in the year
 
         //test preset 
-        String name = "test";
-        Preset myPreset = new Preset(name, currentYear, START_WEEKDAY);
-        System.out.println(myPreset.days);
+        
 
         //create a list of all days in the year
         
