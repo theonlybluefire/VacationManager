@@ -97,7 +97,6 @@ public abstract class PresetUtils {
         String[] daysStringArray;
 
         // read properties file
-        System.out.println("test" + Preset.path + fileName);
         try (FileInputStream in = new FileInputStream(Preset.path + fileName )) {
             props.load(in);
         } catch (FileNotFoundException e) {
